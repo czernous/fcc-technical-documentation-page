@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif+TC&display=swap');
+body {
+	font-family: 'Noto Serif TC', serif;
+	font-size: 1rem;
+	background-color: #fbe3b9;
+	color: #2d334a;
+	min-width: 18rem;
+}
+#navbar {
+	position: fixed;
+	min-width: 18rem;
+	width: 18.75rem;
+	top:0px;
+	left:0px;
+	height: 100%;
+	background-color: #2d334a;
+	color: #fab696;
+}
+header {
+	font-size: 1.5rem;
+	font-weight: bold;
+	text-align: center;
+}
+#navbar ul {
+  height: 88%;
+  padding: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+#navbar li {
+  color: #fab696;
+  list-style: none;
+  position: relative;
+  width: 100%;
+}
+#navbar a {
+  display: block;
+  padding: 10px 30px;
+  color: #fbe3b9;
+  text-decoration: none;
+ }
+#main-doc {
+	position: relative;
+	margin-left:19rem;
+	max-width: 64rem;
+	padding:0.2rem;
+}
+pre {
+	color:#0c8969;
+}
+@media only screen and (max-width: 815px) {
+  #navbar ul {
+    border: 1px solid;
+    height: 207px;
+  }
+
+  #navbar {
+    background-color: #0c8969;
+    position: absolute;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-height: 275px;
+    border: none;
+    z-index: 1;
+    border-bottom: 2px solid;
+  }
+
+  #main-doc {
+    position: relative;
+    margin-left: 0px;
+    margin-top: 270px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  #main-doc {
+    margin-left: -10px;
+  }
+}

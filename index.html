@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CSS box model</title>
+	<link rel ="stylesheet" href="style.css">
+</head>
+<body>
+		<nav id="navbar">
+			<header>
+				CSS box model manual
+			</header>
+				<ul>
+					<li class="nav-link">
+						<a href="#introduction">Introduction</a>
+					</li>
+					<li class="nav-link">
+						<a href="#padding-vs-margin">Padding VS Margin</a>
+					</li>
+					<li class="nav-link">
+						<a href="#examples_and_calculations">Box model examples and calculations</a>
+					</li>
+					<li class="nav-link">
+						<a href="#borders">Borders</a>
+					</li>
+					<li class="nav-link">
+						<a href="#summary">Further reading and summary</a>
+					</li>
+				</ul>
+		</nav>
+		<main id="main-doc">
+			<section class="main-section" id="introduction">
+				<header>Introduction</header>
+				<article>
+					<h1>What is the CSS Box Model?</h1>
+					<p>The CSS Box Model is the primary means of layout for everything on the web. It is a standard created by the World Wide Web Consortium which describes layout as rectangular boxes in html which surround every single element on a web page or in the document tree. Using the box model, web designers and developers can make use of various properties such as padding, borders, margin-top, margin-right, margin-bottom, margin-left, and many others to create page layouts. In this tutorial, we’ll take a closer look at the CSS Box Model and why it is so important.</p>
+					<h2>What is the purpose of the CSS Box Model?</h2>
+					<p>The purpose of the CSS Box Model is to define all elements as a box. In other words, everything is a box. Chris Coyier of CSS Tricks describes understanding this concept that every element in web design is a rectangular box was a real “ah-ha moment” for him. Once you have the concept in your mind of this fact, you can begin to use the box model approach with the right mindset.</p>
+					<h2>Why Is the CSS Box Model Important?</h2>
+					<p>If you have ever been creating a page layout for the web and found yourself doing all kinds of math to figure out how wide or tall you can make things and have them behave properly on the page, then you have encountered what it means to deal with the box model. It is important to understand how margins, borders, padding, and content all work together to create the layout of elements on the page.</p>
+					<h2>The Box Model: Content, Padding, Border, Margin</h2>
+					<p>Now that we know everything is a box (Even a box around text), we should as how we can define space between elements, how to define space between content, and how to create different types of borders around elements. You might think of a box as something that comes from Amazon and arrives on your door step. Inside the box is a cool gadget (the content), likely surrounded by some protective padding (the padding). Perhaps two boxes were delivered and they are side by side with a little space in between them. This is the margin. This is kind of like the CSS Box Model!</p>
+					<ul>
+						<li><strong>Content:</strong> Inside the Box, is your content. Of course this may be simple text, images, or other types of media.</li>
+						<li><strong>Padding:</strong> Padding is what adds space between the content and the edge of the box itself. Padding can be added to any side of the content such as top, right, bottom, and left. Padding is transparent so it will allow background colors to be visible if there are any.</li>
+						<li><strong>Border:</strong>The border surrounds the content and padding. It may be set to dotted, dashed, solid, double, groove, ridge, inset, outset, none, or hidden. It may also have rounded corners if you like. The key thing to remember is that the border is between the element’s padding and margin and is typically opaque to cover any background color that may be present.</li>
+						<li><strong>Margin:</strong>Margin is the property that gives space between elements. It can also be applied to the top, right, bottom, and left as the layout calls for it. Interestingly, the margin property can be given a negative value for interesting placement techniques or be set to auto for automatic margins.</li>
+					</ul>
+				</article>
+			</section>
+			<section class="main-section" id="padding-vs-margin">
+				<header>Padding VS Margin</header>
+				<article>
+					<p>It can be easy to confuse padding and margin as they both give the effect of adding space. But where are these properties adding space? One tip to help remember which is which, is if you find yourself saying “I need more background”, then likely you need some padding. Padding allows the background color through. If you feel you need space between boxes, then that is when margin comes into play. Margin is outside of the border, while padding is inside of the border.</p>
+					<h2>Syntax of Padding and Margin</h2>
+					<p>The syntax for both padding and margin is similar. Often times you see four values side by side like so:</p>
+					<code>div &lcub;
+						padding: 5px 8px 3px 4px;
+					&rcub;	
+					</code>
+					<p>Now you might look at that and say, ok what number value has what effect? There are two ways to remember this. This first is with an Acronym of TRBL. This stands for <strong>Top, Right, Bottom,</strong> and <strong>Left.</strong> So the example above has 5 pixels of padding on the Top, 8 pixels on the Right, 3 pixels on the Bottom, and 4 pixels on the Left. The same holds true for margin. There are a few shorthand options for this, but the only one I like is putting just one value in which applies equally to all four sides.</p>
+					<p>The other way to remember is by thinking of a clock and moving clockwise.</p>
+					<img src="https://vegibit.com/wp-content/uploads/2018/09/margin-and-padding-syntax.png">
+					<h2>Margins Auto Collapse</h2>
+					<p>A big difference between padding and margin is that margins will auto collapse. In other words the top and bottom margins of blocks can overlap into a single margin area where the size is the largest of the individual margins. If they are the same margin value on each element, then that value is used: they are *not* added together.</p>
+					<blockquote>
+						<pre>
+							&lt;html&gt;
+							&lt;head&gt;
+							    &lt;style&gt;
+							        .top &lcub;
+							            margin: 0 0 50px 0;
+							            background: lightblue;
+							        &rcub;
+							 
+							        .bottom &lcub;
+							            margin: 50px 0 0 0;
+							            background: lightblue;
+							        &rcub;
+							    &lt;/style&gt;
+							&lt;/head&gt;
+							&lt;body&gt;
+							&lt;h1&gt;Margin Auto Collapse Example 1&lt;/h1&gt;
+							&lt;p class="top"&gt;Paragraph 1 has 50px margin Bottom&lt;/p&gt;
+							&lt;p class="bottom"&gt;Paragraph 2 has 50px margin Top&lt;/p&gt;
+							&lt;hr&gt;
+							&lt;p&gt;The distance between Paragraph 1 and Paragraph 2 is 50px (not 100px!)&lt;/p&gt;
+							&lt;/body&gt;
+							 &lt;/html&gt;
+						</pre>
+					</blockquote>
+					<img src="https://vegibit.com/wp-content/uploads/2018/09/box-model-margin-auto-collapse.png">
+					<p>In looking at the example above, you might be tempted to think that gee if I have a margin of 50px on both elements and they are stacked on top of each other, then the result should be a distance of 100px between them. This is not the case thanks to margin auto collapsing. Here is another example.</p>
+					<pre>
+						&lt;html&gt;
+						 
+						&lt;head&gt;
+						    &lt;style&gt;
+						        .top &lcub;
+						            margin: 0 0 25px 0;
+						            background: lightblue;
+						        &rcub;
+						 
+						        .bottom &lcub;
+						            margin: 100px 0 0 0;
+						            background: lightblue;
+						        &rcub;
+						    &lt;/style&gt;
+						&lt;/head&gt;
+						 
+						&lt;body&gt;
+						    &lt;h1&gt;Margin Auto Collapse Example 2&lt;/h1&gt;
+						    &lt;p class="top"&gt;Paragraph 1 has 25px margin Bottom&lt;/p&gt;
+						    &lt;p class="bottom"&gt;Paragraph 2 has 100px margin Top&lt;/p&gt;
+						    &lt;hr&gt;
+						    &lt;p&gt;The distance between Paragraph 1 and Paragraph 2 is 100px (not 125px!)&lt;/p&gt;
+						&lt;/body&gt;
+						 
+						&lt;/html&gt;
+					</pre>
+					<img src="https://vegibit.com/wp-content/uploads/2018/09/margins-will-collapse.png">
+				</article>
+			</section>
+			<section class="main-section" id="examples_and_calculations">
+				<article>
+					<h2>What values are assigned to Box Model Properties?</h2>
+					<p>So everything is a box, and each box has content, padding, border, and margin. What values get assigned to these properties? This would be units of length such as:</p>
+					<ul>
+						<li><strong>%:</strong> A blocks width such as 50%</li>
+						<li><strong>em:</strong> The computed height value of the element’s font-size.</li>
+						<li><strong>ex:</strong> The height of the character “x” also known as the font’s x-height.</li>
+						<li><strong>rem:</strong> The font-size of &lt;html&gt; which avoids inheritance issues with em.</li>
+						<li><strong>vw:</strong> A percentage of the viewport’s width.</li>
+						<li><strong>vh:</strong> A percentage of the viewport’s height.</li>
+						<li><strong>vm:</strong> The smaller value of vw and vh.</li>
+						<li><strong>px:</strong> CSS pixels.</li>
+						<li><strong>cm:</strong> Centimeters.</li>
+						<li><strong>mm:</strong> Millimeters.</li>
+					</ul>
+					<h2>Diagram Of The CSS Box Model</h2>
+					<p>Below is the diagram of the CSS Box Model which shows the hierarchy. In fact if you open the developer tools in Google Chrome or Mozilla Firefox, each has a visual representation of the Box Model which updates for every element you may inspect on the page. See! Everything really is a Box!</p>
+					<img src="https://vegibit.com/wp-content/uploads/2018/09/CSS-Box-Model.png">
+					<h2>CSS Box Model Example</h2>
+					<pre>
+						&lt;!DOCTYPE html&gt;
+						&lt;html&gt;
+						&lt;style&gt;
+						    div &lcub;
+						        background-color: #cff0fb;
+						        width: 300px;
+						        padding: 15px;
+						        border: 20px solid #737373;
+						        margin: 25px
+						    &rcub;
+						&lt;/style&gt;
+						 
+						&lt;body&gt;
+						    &lt;div&gt;
+						        Content
+						    &lt;/div&gt;
+						&lt;/body&gt;
+						 
+						&lt;/html&gt;
+					</pre>
+					<h2>Inspecting The Box Model In Google Chrome</h2>
+					<img src="https://vegibit.com/wp-content/uploads/2018/09/google-chrome-box-model-inspector.png">
+					<h2>Inspecting The Box Model In Mozilla Firefox</h2>
+					<img src="https://vegibit.com/wp-content/uploads/2018/09/firefox-box-model-inspector.png">
+					<h2>Display Inline vs Block vs Inline-Block</h2>
+					<p>In general, when you&#8217;re dealing with layouts using the box model, you are dealing with <em>block level elements</em>.  What are block level elements?  A block-level element always begins on a new line and takes up the full width of the browser window.  The block level elements are <strong>&lt;p&gt;</strong>, <strong>&lt;h1&gt;</strong>, <strong>&lt;h2&gt;</strong>, <strong>&lt;h3&gt;</strong>, <strong>&lt;h4&gt;</strong>, <strong>&lt;h5&gt;</strong>, <strong>&lt;h6&gt;</strong>, <strong>&lt;ol&gt;</strong>, <strong>&lt;ul&gt;</strong>, <strong>&lt;pre&gt;</strong>, <strong>&lt;address&gt;</strong>, <strong>&lt;blockquote&gt;</strong>, <strong>&lt;div&gt;</strong>, <strong>&lt;fieldset&gt;</strong>, <strong>&lt;form&gt;</strong>, <strong>&lt;hr&gt;</strong>, and <strong>&lt;table&gt;</strong>.</p>
+					<p>Block level boxes are perfect for setting dimensions using the width and height properties.  In general however, setting a height on an element that contains text or anything sized using font-relative units is a bad idea. The reason is because you may create hidden content with scroll bars on the element &#8211; which looks bogus.  In any event the following are the key points of block level elements.</p>
+					<h3>Block Level Elements</h3>
+					<ul>
+						<li>In general block elements are bigger.</li>
+						<li>Start on a new line.</li>
+						<li>Can contain inline elements and other block-level elements. </li>
+						<li>Act as structural building blocks.</li>
+						<li>As wide as containing element.</li>
+						<li>Height adjusts to fit provided content.</li>
+					</ul>
+					<pre>
+						&lt;html&gt;
+						&lt;style&gt;
+						    div span &lcub;
+						        width: 300px;
+						        height: 100px;
+						        margin: 20px;
+						        background-color: lightblue;
+						    &rcub;
+						 
+						    div div &lcub;
+						        width: 300px;
+						        height: 100px;
+						        margin: 20px;
+						        background-color: lightblue;
+						    &rcub;
+						 
+						    div p &lcub;
+						        width: 300px;
+						        height: 100px;
+						        margin: 20px;
+						        background-color: lightblue;
+						        display: inline-block;
+						    &rcub;
+						&lt;/style&gt;
+						 
+						&lt;body&gt;
+						 
+						&lt;h1&gt;Inline&lt;/h1&gt;
+						&lt;div&gt;
+						    &lt;span&gt;I'm a span and I'm inline&lt;/span&gt;
+						    &lt;span&gt;I'm a span and I'm inline&lt;/span&gt;
+						&lt;/div&gt;
+						&lt;hr&gt;
+						&lt;h1&gt;Block Level&lt;/h1&gt;
+						&lt;div&gt;
+						    &lt;div&gt;I'm a div and I'm block level&lt;/div&gt;
+						    &lt;div&gt;I'm a div and I'm block level&lt;/div&gt;
+						&lt;/div&gt;
+						&lt;hr&gt;
+						&lt;h1&gt;Inline-Block Level&lt;/h1&gt;
+						&lt;div&gt;
+						    &lt;p&gt;I'm a p and I'm inline-block level&lt;/p&gt;
+						    &lt;p&gt;I'm a p and I'm inline-block level&lt;/p&gt;
+						&lt;/div&gt;
+						&lt;/body&gt;
+						 
+						&lt;/html&gt;
+					</pre>
+					<p>Even though each pair of elements has the same width, height, and margin, the resulting layout on the page is quite different. Note that on the inline element, both the width and the height are completely ignored. On the block level element, all properties are respected and each element starts on a new line. Lastly, the inline-block element appears to work almost like the block level element with the difference being that they do not need to start on a new line. So if you want to create block like boxes but keep them on the same line, you can use the inline-block property.</p>
+					<img src="https://vegibit.com/wp-content/uploads/2018/09/inline-vs-block-vs-inline-block-level-elements.png">
+					<h2>Calculating Widths and Heights In The Box Model</h2>
+					<p>If you’re ready to drive yourself bananas, let’s talk about how to correctly calculate the total widths and heights of elements on the page using the box model.  The height and width of a CSS box is the size of its content.  In addition to this however, you have to account for padding, margins, and borders if there are any.  This is likely the cause of troubles if you are expecting one layout based on the dimensions you provide in <a href="https://vegibit.com/css-crash-course-tutorial-for-beginners/">CSS</a> vs the actual result on the web page.  Here is how to calculate.</p>
+					<li>margin-left + border-left-width + padding-left + width + padding-right + border-right width + margin-right = The Total <strong>Width</strong>.</li>
+					<li>margin-top + border-top-width + padding-top + height + padding-bottom + border bottom- width + margin-bottom = The Total <strong>Height</strong>.</li>
+					<h2>Box Model Calculations Example</h2>
+					<p>Imagine you want to create three block level boxes on a page, and you want them to take up an equal amount of width so that no matter how skinny or wide the page is, each box will always have exactly 1/3 of the width and be on the same line as each other. First, let’s look at the html markup for this example. Pretty simple stuff. We have three div elements inside of a wrapping div element and some content inside each “box”.</p>
+					<pre>
+						&lt;html&gt;
+						 
+						&lt;head&gt;
+						    &lt;link rel="stylesheet" type="text/css" href="boxy.css"&gt;
+						&lt;/head&gt;
+						 
+						&lt;body&gt;
+						    &lt;h1&gt;Box Model Calculations&lt;/h1&gt;
+						    &lt;div class="boxes"&gt;
+						        &lt;div class="box box1"&gt;
+						            &lt;h2&gt;Box One&lt;/h2&gt;
+						        &lt;/div&gt;
+						        &lt;div class="box box2"&gt;
+						            &lt;h2&gt;Box Two&lt;/h2&gt;
+						        &lt;/div&gt;
+						        &lt;div class="box box3"&gt;
+						            &lt;h2&gt;Box Three&lt;/h2&gt;
+						        &lt;/div&gt;
+						    &lt;/div&gt;
+						&lt;/body&gt;
+						 
+						&lt;/html&gt;
+					</pre>
+					<p>Here is the CSS for our example.</p>
+					<pre>
+						* &lcub;
+						    margin: 0;
+						    padding: 0;
+						    font-family: Verdana, Geneva, Tahoma, sans-serif;
+						&rcub;
+						 
+						h1 &lcub;
+						    width: 500px;
+						    background: #303030;
+						    color: #e0e0d1;
+						    text-align: center;
+						    padding: 25px;
+						    border: 15px solid #7da0cc;
+						    margin: 25px 25px;
+						&rcub;
+						&rcub;
+						div.boxes &lcub;
+						    background-color: #8797a8;
+						    padding: 20px;
+						&rcub;
+						 
+						.box &lcub;
+						    float: left;
+						    width: 33.33333%;
+						    padding: 20px;
+						    border: 10px solid lightgray;
+						&rcub;
+						 
+						h2 &lcub;
+						    color: gray;
+						    text-align: center;
+						&rcub;
+						 
+						.box1 &lcub;
+						    background: lightgreen;
+						&rcub;
+						 
+						.box2 &lcub;
+						    background: lightcoral;
+						&rcub;
+						 
+						.box3 &lcub;
+						    background: lightskyblue;
+						&rcub;
+						 
+						.boxes::after &lcub;
+						    content: "";
+						    display: table;
+						    clear: both;
+						&rcub;
+					</pre>
+					<p>They key thing to note at this point is that we have the float set to left on all the boxes. In addition, each box is exactly 33.33333% wide. So this means, if you have three boxes like we do, then they should each take up an equal amount of space side by side. Check out what is happening in the browser however.</p>
+					<img src="https://vegibit.com/wp-content/uploads/2018/09/box-model-calculation-example.png">
+					<p>Yep. Just as you would (not) expect. We have two boxes on one line, and the third just kind of hanging out on it’s own line. So what happened? Well, on the .box class, we have a padding of 20px in addition to a 10px border. In the box model, you still have to account for these values! So you say, ok I’ll go ahead and remove the padding and border. Look at what happens then.</p>
+					<img src="https://vegibit.com/wp-content/uploads/2018/09/block-float-left-no-padding-no-border.png">
+					<p>So that kind of worked. You got your boxes on the same line, but the look is messed up. You lost your padding and lost the slick border as well. What to do?!</p>
+					<h2>box-sizing: border-box;</h2>
+					<p>Go ahead and put those borders and padding back on your boxes! Once that is complete, we are going to make one small adjustment to our CSS file. In the universal selector area we are going to make use of the box-sizing property and set it’s value to border-box.</p>
+					<pre>
+						* &lcub;
+						    margin: 0;
+						    padding: 0;
+						    font-family: Verdana, Geneva, Tahoma, sans-serif;
+						    box-sizing: border-box;
+						&rcub;
+					</pre>
+					<p>What does this do? It tells the browser that when you are setting up the layout on the page, the padding and the border are going to be a part of the total width. So this simplifies your calculations and helps to get the desired layout. Now that we have made the box-sizing change, lets check out the result.</p>
+					<img src="https://vegibit.com/wp-content/uploads/2018/09/box-sizing-border-box-example.png">		
+				</article>				
+			</section>
+			<section class="main-section" id="borders">
+				<article>
+					<header>Fun with borders</header>
+					<p>Borders can be styled in a whole slew of different ways. Just to recap, borders are the area between the margin and padding. As such you can create outline effects that surround any element. You can apply a border using width, style, and color. This equates to border-width, border-style, and border-color. The commonly used border types are dotted, dashed, solid, double, groove, ridge, inset, and outset.</p>
+					<img src="https://vegibit.com/wp-content/uploads/2018/09/common-border-style-types.png">
+					<h2>You can also add color for your borders.</h2>
+					<img src="https://vegibit.com/wp-content/uploads/2018/09/common-border-tyle-types-colors.png">
+					<h2>Borders Can Be Single Sided</h2>
+					<p>Web designers have the option of assigning a border to the top, right, bottom, or left of an element similar to how margin or padding can be assigned to just a single side. In fact you can combine sides but leave off others for interesting effect as well. For this you can use border-top, border-right, border-bottom, and border-left. Here is a fun example where we mix and match both different border styles and colors on one element.</p>
+					<img src="https://vegibit.com/wp-content/uploads/2018/09/different-border-style-on-every-side.png">
+					<h2>Round Those Corners!</h2>
+					<p>The border-radius property is a pretty cool tool that allows you to create cool effects and rounded corners on your boxes. At one point, rounded corners were so en vogue that you almost couldn’t tell the difference between a square and a circle! Here we simply set border-radius: 20px; on our example of the various border styles.</p>
+					<img src="https://vegibit.com/wp-content/uploads/2018/09/border-radius-example-rounded-corners.png">
+					<p>Just like most properties in the box model, you can control all four side – or in the case of border-radius all four corners. There are shorthand techniques but the easiest thing to remember is when specifying all four values the radius will apply to the top-left, top-right, bottom-right, and bottom-left corners. Here is an example where we boost up the border-radius to a whopping 75 pixels to demonstrate the effect.</p>
+					<img src="https://vegibit.com/wp-content/uploads/2018/09/What-Is-The-CSS-Box-Model.png">
+				</article>
+			</section>
+			<section class="main-section" id="summary">
+				<article>
+					<header>Further reading</header>
+					<p>We covered a lot in this tutorial, but there is of course a whole lot more to know.  Here are some good articles and tutorials about the CSS Box Model.</p>
+					<ul>
+						<li><a href="https://www.w3.org/TR/css-box-3/">The W3C CSS Box Model</a></li>
+						<li><a href="https://medium.com/@js_tut/css-tutorial-1-box-model-6ff80a9bbfda">Thinking Inside The Box ‒ CSS Box Model</a></li>
+						<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model">Introduction to the CSS basic box model</a></li>
+						<li><a href="https://torquemag.io/2018/06/css-box-model/">Css for Beginners: The Css Box Model and How to Use It Correctly</a></li>
+						<li><a href="https://dzone.com/articles/css-box-model-for-beginners">CSS Box Model for Beginners</a></li>
+						<li><a href="https://internetingishard.com/html-and-css/css-box-model/">A friendly introduction to padding, borders, and margins</a></li>
+						<li><a href="http://rupl.github.io/unfold/">Unfolding the Box Model</a></li>
+					</ul>
+					<h2>What Is The CSS Box Model Summary</h2>
+					<ul>
+						<li>All HTML elements on a web page can be looked at as Boxes.</li>
+						<li>In CSS, the term <strong>Box Model</strong> refers to the design and layout.</li>
+						<li>The Box Model consists of: <b>margins</b>, <strong>borders</strong>, <strong>padding</strong>, and the actual <strong>content</strong>. </li>
+						<li>We can change the height and width of elements (boxes).</li>
+						<li>The Box Model allows us to define space between elements.</li>
+						<li>The Box Model allows us to add borders around elements.</li>
+					</ul>
+				</article>
+			</section>
+		</main>
+</body>
+</html>
